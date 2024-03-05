@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Standard Calculator</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #663399; 
+        color: #fff; 
+        margin: 0;
+        padding: 0;
+    }
+    h2 {
+       text-align: center;
+       font-variant: normal;
+       font-weight: 200px;
+       font-weight: bold; 
+    }
+    .calculator {
+        width: 300px;
+        margin: 50px auto;
+        background-color: #000;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        padding: 20px;
+    }
+
+    .display {
+        height: 60px;
+        background-color: #222; 
+        border-radius: 5px;
+        text-align: right;
+        padding: 10px;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+    }
+
+    button {
+        border: none;
+        outline: none;
+        cursor: pointer;
+        font-size: 18px;
+        padding: 15px;
+        transition: background-color 0.3s;
+        border-radius: 5px;
+    }
+
+    button:hover {
+        background-color: #444; 
+    }
+
+    .number-buttons button {
+        background-color: #333; 
+    }
+
+    .operator-buttons button {
+        background-color: #ff9800; 
+    }
+
+    .equals-button {
+        background-color: #4caf50; 
+        color: #fff; 
+    }
+</style>
+</head>
+<body>
+<h2>CALCULATOR</h2>
+<div class="calculator">
+    <div class="display" id="result"></div>
+    <div class="buttons">
+        <button onclick="appendToResult('7')">7</button>
+        <button onclick="appendToResult('8')">8</button>
+        <button onclick="appendToResult('9')">9</button>
+        <button class="operator-buttons" onclick="appendOperator('/')">/</button>
+        <button onclick="appendToResult('4')">4</button>
+        <button onclick="appendToResult('5')">5</button>
+        <button onclick="appendToResult('6')">6</button>
+        <button class="operator-buttons" onclick="appendOperator('*')">x</button>
+        <button onclick="appendToResult('1')">1</button>
+        <button onclick="appendToResult('2')">2</button>
+        <button onclick="appendToResult('3')">3</button>
+        <button class="operator-buttons" onclick="appendOperator('-')">-</button>
+        <button onclick="appendToResult('0')">0</button>
+        <button onclick="appendToResult('.')">.</button>
+        <button class="equals-button" onclick="calculateResult()">=</button>
+        <button class="operator-buttons" onclick="appendOperator('+')">+</button>
+        <button class="operator-buttons" onclick="calculatePercentage()">%</button>
+        <button class="operator-buttons" onclick="calculatePower()">^</button>
+        <button class="operator-buttons" onclick="calculateRoot()">√</button>
+        <button class="operator-buttons" onclick="clearResult()">C</button>
+    </div>
+</div>
+
+<script>
+    function appendToResult(value) {
+        document.getElementById('result').innerText += value;
+    }
+
+    function appendOperator(operator) {
+        const result = document.getElementById('result').innerText;
+        const lastChar = result.slice(-1);
+        if (lastChar !== '+' && lastChar !== '-' && lastChar !== '*' && lastChar !== '/' && result !== '') {
+            document.getElementById('result').innerText += operator;
+        }
+    }
+
+    function calculateResult() {
+        const result = document.getElementById('result').innerText;
+        if (result) {
+            document.getElementById('result').innerText = eval(result);
+        }
+    }
+
+    function calculatePercentage() {
+        const result = document.getElementById('result').innerText;
+        if (result) {
+            document.getElementById('result').innerText = eval(result + '/100');
+        }
+    }
+
+    function calculatePower() {
+        const result = document.getElementById('result').innerText;
+        if (result) {
+            document.getElementById('result').innerText = Math.pow(eval(result), 2);
+        }
+    }
+
+    function calculateRoot() {
+        const result = document.getElementById('result').innerText;
+        if (result) {
+            document.getElementById('result').innerText = Math.sqrt(eval(result));
+        }
+    }
+
+    function clearResult() {
+        document.getElementById('result').innerText = '';
+    }
+</script>
+
+</body>
+</html>
+
+
+
